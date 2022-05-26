@@ -705,8 +705,12 @@ public class GuardrailsOptions implements GuardrailsConfig
 
     private static void validateMinRFThreshold(int warn, int fail, String name)
     {
-        validateMinIntThreshold(warn, fail, name);
-        validateMinRFVersusDefaultRF(fail, name);
+        validateMinIntThreshold(warn, fail, "minimum_replication_factor");
+
+        if (fail > DatabaseDescriptor.getDefaultKeyspaceRF())
+            throw new IllegalArgumentException(format("minimum_replication_factor_fail_threshold to be set (%d) " +
+                                                      "cannot be greater than default_keyspace_rf (%d)",
+                                                      fail, DatabaseDescriptor.getDefaultKeyspaceRF()));
     }
 
     private static void validateWarnLowerThanFail(long warn, long fail, String name)
@@ -727,15 +731,6 @@ public class GuardrailsOptions implements GuardrailsConfig
         if (fail > warn)
             throw new IllegalArgumentException(format("The warn threshold %d for %s_warn_threshold should be greater " +
                                                       "than the fail threshold %d", warn, name, fail));
-    }
-
-    private static void validateMinRFVersusDefaultRF(int fail, String name) throws IllegalArgumentException
-    {
-        if (fail > DatabaseDescriptor.getDefaultKeyspaceRF())
-        {
-            throw new IllegalArgumentException(String.format("%s_fail_threshold to be set (%d) cannot be greater than default_keyspace_rf (%d)",
-                                                           name, fail, DatabaseDescriptor.getDefaultKeyspaceRF()));
-        }
     }
 
     private static void validateSize(DataStorageSpec.LongBytesBound size, boolean allowZero, String name)
