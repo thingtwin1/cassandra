@@ -73,6 +73,7 @@ public class YamlConfigurationLoader implements ConfigurationLoader
     private static URL getStorageConfigURL() throws ConfigurationException
     {
         String configUrl = System.getProperty("cassandra.config");
+        logger.info("cassandra.config system property is", configUrl);
         if (configUrl == null)
             configUrl = DEFAULT_CONFIGURATION;
 
@@ -81,6 +82,7 @@ public class YamlConfigurationLoader implements ConfigurationLoader
         {
             url = new URL(configUrl);
             url.openStream().close(); // catches well-formed but bogus URLs
+            logger.info("url is set to ", url);
         }
         catch (Exception e)
         {
