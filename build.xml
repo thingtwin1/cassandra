@@ -536,6 +536,8 @@
           <dependency groupId="org.slf4j" artifactId="jcl-over-slf4j" version="1.7.25" />
           <dependency groupId="ch.qos.logback" artifactId="logback-core" version="1.2.9"/>
           <dependency groupId="ch.qos.logback" artifactId="logback-classic" version="1.2.9"/>
+            <dependency groupId="org.codehaus.janino" artifactId="janino" version="3.1.7" />
+            <dependency groupId="com.apple.cie.rio" artifactId="splunk-log-layouts-logback-classic" version="0.17.0" />
           <dependency groupId="com.fasterxml.jackson.core" artifactId="jackson-core" version="2.13.2"/>
           <dependency groupId="com.fasterxml.jackson.core" artifactId="jackson-databind" version="2.13.2.2"/>
           <dependency groupId="com.fasterxml.jackson.core" artifactId="jackson-annotations" version="2.13.2"/>
