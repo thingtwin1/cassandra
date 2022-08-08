@@ -817,6 +817,8 @@
 
         <dependency groupId="ch.qos.logback" artifactId="logback-core"/>
         <dependency groupId="ch.qos.logback" artifactId="logback-classic"/>
+          <dependency groupId="org.codehaus.janino" artifactId="janino" />
+          <dependency groupId="com.apple.cie.rio" artifactId="splunk-log-layouts-logback-classic" />
 
         <!-- don't need hadoop classes to run, but if you use the hadoop stuff -->
         <dependency groupId="org.apache.hadoop" artifactId="hadoop-core" optional="true"/>
